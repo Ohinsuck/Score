@@ -1,0 +1,13 @@
+SQLite version 3.45.3 2024-04-15 13:34:05 (UTF-16 console I/O)
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> import sqlite3
+   ...> conn = sqlite3.connect('score.db')
+   ...> cur = conn.cursor()
+   ...> cur.execute('''CREATE TABLE IF NOT EXISTS 성적 ( 학생이름 TEXT,과목1 TEXT,과목2 TEXT,점수1 INTEGER,점수2 INTEGER)''')
+   ...> 성적들 = [('학생1', '과목A', '과목B', 85, 90),('학생2', '과목A', '과목B', 70, 75),('학생3', '과목A', '과목B', 95, 85)]
+   ...> cur.executemany('INSERT INTO 성적 VALUES (?, ?, ?, ?, ?)', 성적들)
+   ...> conn.commit()
+   ...> conn.close()
+   ...>
